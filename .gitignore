@@ -4,3 +4,6 @@ test/.vs/Project1/v16/Browse.VC.db
 *.ipch
 VocabularyTree-master/.vs/VocabularyTree/v16/.suo
 VocabularyTree-master/.vs/VocabularyTree/v16/Browse.VC.db
+*.db-shm
+*.db-wal
+*.opendb
