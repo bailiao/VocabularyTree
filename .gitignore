@@ -1,7 +1,6 @@
 
 test/.vs/Project1/v16/.suo
 test/.vs/Project1/v16/Browse.VC.db
-test/.vs/Project1/v16/ipch/AutoPCH/208c56254effc52f/源.ipch
+*.ipch
 VocabularyTree-master/.vs/VocabularyTree/v16/.suo
 VocabularyTree-master/.vs/VocabularyTree/v16/Browse.VC.db
-*.ipch
