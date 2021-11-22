@@ -10,6 +10,7 @@ Copyright (C) 2006-2010  Rob Hess <hess@eecs.oregonstate.edu>
 #define IMGFEATURES_H
 
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/types_c.h>
 
 
 /** FEATURE_OXFD <BR> FEATURE_LOWE */

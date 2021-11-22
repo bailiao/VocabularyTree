@@ -20,8 +20,9 @@ that accompanied this distribution.
 #include "sift.h"
 #include "imgfeatures.h"
 #include "utils.h"
+#include <opencv2/imgproc/imgproc_c.h> 
 
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
 
 /************************* Local Function Prototypes *************************/
 

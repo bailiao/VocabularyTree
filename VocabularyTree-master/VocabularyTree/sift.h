@@ -19,7 +19,9 @@ that accompanied this distribution.
 #ifndef SIFT_H
 #define SIFT_H
 
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs/legacy/constants_c.h> 
+#include <opencv2/highgui/highgui_c.h>
 
 
 /******************************** Structures *********************************/

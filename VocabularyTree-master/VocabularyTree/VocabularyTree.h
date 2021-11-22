@@ -1,7 +1,7 @@
 #ifndef VOCABULARYTREE
 #define VOCABULARYTREE
 
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <stdio.h>
 #include <iostream>
 #include "sift.h"

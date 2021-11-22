@@ -8,12 +8,16 @@ Copyright (C) 2006-2010  Rob Hess <hess@eecs.oregonstate.edu>
 
 #include "utils.h"
 
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs/legacy/constants_c.h> 
+#include <opencv2/highgui/highgui_c.h>
 
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include "E:/opencv/opencv2410/opencv/build/include/opencv2/highgui/highgui.hpp"
+using namespace cv;
 
 
 /*************************** Function Definitions ****************************/
@@ -265,7 +269,7 @@ void vid_view( IplImage** imgs, int n, char* win_name )
 {
 	int k, i = 0, playing = 0;
 
-	cvNamedWindow( win_name, 1 );
+	namedWindow( win_name, 1 );
 	cvShowImage( win_name, imgs[i] );
 	while( ! win_closed( win_name ) )
 	{

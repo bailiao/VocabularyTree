@@ -9,7 +9,8 @@ Copyright (C) 2006-2010  Rob Hess <hess@eecs.oregonstate.edu>
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <opencv.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/imgcodecs/legacy/constants_c.h>
 
 #include <stdio.h>
 

@@ -1,4 +1,5 @@
 #include "VocabularyTree.h"
+#include <opencv2\imgcodecs\imgcodecs_c.h>
 
 //==========================functions in class imageRetriver========================
 void imageRetriver::buildDataBase(char* directoryPath) {
@@ -14,7 +15,7 @@ void imageRetriver::buildDataBase(char* directoryPath) {
 
 vector<string> imageRetriver::queryImage(const char* imagePath) {
 	vector<string> ans;
-	IplImage* img = cvLoadImage(imagePath);
+	IplImage* img = imread(imagePath);
 	struct feature* feat = NULL;
 	int nFeatures = sift_features(img, &feat);
 	double** queryFeat = new double*[nFeatures];

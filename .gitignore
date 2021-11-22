@@ -7,3 +7,5 @@ VocabularyTree-master/.vs/VocabularyTree/v16/Browse.VC.db
 *.db-shm
 *.db-wal
 *.opendb
+*.db
+test/Project1/.vs/Project1/v16/.suo
