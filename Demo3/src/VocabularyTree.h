@@ -78,10 +78,10 @@ public:
 	vector<string> imagePath; 
 	int featureLength;  
 	int nImages;
-	int *nFeatures;                        //features per image
+	int *Features_PerImage;                        //features per image
 	int totalFeatures;
 
-	imageRetriver() { tree = NULL; nImages = 0; featureLength = 0; nFeatures = NULL;}
+	imageRetriver() { tree = NULL; nImages = 0; featureLength = 0; Features_PerImage = NULL;}
 	void buildDataBase( char* directoryPath );
 	vector<string> queryImage( const char* imagePath ); 
 

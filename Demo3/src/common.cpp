@@ -69,6 +69,10 @@ void node_divide_cnt(double* &vector1, int cnt, int featureLength) {
 }
 
 void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nums, int featureLength, double** &clusterCenter) {
+	//for (int i = 0; i < nFeatures; i++) {
+	//	cout << features[i].label << endl;
+	//}
+	//cout << "-------------------------" << endl;
 	if (nFeatures == 0) return;
 											// features 	结构体数组	(label + 长度为featurelength的double*)
 											// nFeatures	目前有多少个feature, 如果少于branchNum个,每一个单独成类
@@ -77,10 +81,18 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 	for(int i = 0; i < branchNum; i++)
 		nums[i] = 0;						// 已经分配了内存
 
-	if(nFeatures < branchNum) {
+	if(nFeatures <= branchNum) {
 		clusterCenter = new double*[nFeatures];
 		for(int i = 0; i < nFeatures; i++) {
 			clusterCenter[i] = features[i].feature;
+			nums[i] = 1;
+			features[i].label = i;
+		}
+
+		for (int i = nFeatures; i < branchNum; i++) {
+			//clusterCenter[i] = NULL;
+			nums[i] = 0;
+			features[i].label = -1;
 		}
 		return;
 	}
@@ -121,7 +133,7 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 		//	;
 		//}
 		memset(cnt, 0, sizeof(int) * branchNum);
-		for(int i = 0; i < branchNum; i++)
+		//for(int i = 0; i < branchNum; i++)
 			// memset(tempCenters, 0, sizeof(double) * featureLength);	XXX
 
 			
@@ -205,9 +217,9 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 	}
 
 	for (int i = 0; i < branchNum; i++) {
-		delete tempCenters[i];
+		delete []tempCenters[i];
 	}
-	delete tempCenters;
+	delete []tempCenters;
 
 	delete[] idx;
 	delete[] cnt;
@@ -219,7 +231,9 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 }
 
 int cmp(const void* a, const void* b) {
-	return ((featureClustering*)a)->label < ((featureClustering*)b)->label;
+	int label_a = ((featureClustering*)a)->label;
+	int label_b = ((featureClustering*)b)->label;
+	return label_a > label_b ? 1 : -1;
 }
 
 #define LEN 1024
