@@ -231,9 +231,13 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 }
 
 int cmp(const void* a, const void* b) {
+<<<<<<< Updated upstream
 	int label_a = ((featureClustering*)a)->label;
 	int label_b = ((featureClustering*)b)->label;
 	return label_a > label_b ? 1 : -1;
+=======
+	return ((featureClustering*)a)->label - ((featureClustering*)b)->label;
+>>>>>>> Stashed changes
 }
 
 #define LEN 1024

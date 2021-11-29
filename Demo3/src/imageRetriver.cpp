@@ -39,6 +39,7 @@ void imageRetriver::buildDataBase(char* directoryPath) {
 	printf("%s\n", directoryPath);
 	vector<string> databaseImagePath;
 	string postfix = ".jpg";
+<<<<<<< Updated upstream
 	
 	DirectoryList("E:\\Donald Duck\\MyClass5\\SRTP\\DemoBase", databaseImagePath,postfix);
 	this->nImages = databaseImagePath.size();
@@ -47,6 +48,10 @@ void imageRetriver::buildDataBase(char* directoryPath) {
 
 
 
+=======
+
+	DirectoryList("D:\\opencv\\VocabularyTree\\Demo3\\test", databaseImagePath,postfix);
+>>>>>>> Stashed changes
 	double** trainFeatures = NULL;
 	int nFeatures = getTrainFeatures(trainFeatures, databaseImagePath,this->featureLength);							// 只有这里需要替换掉SIFT，同时还要注意图片查询时也需要特征提取			
 	cout << "-------------------------------------------------------------" << endl;

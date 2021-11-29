@@ -64,7 +64,14 @@ void vocabularyTree::buildRecursion(int curDepth, vocabularyTreeNode* &curNode, 
 
 
 	kmeans(features, nFeatures, branchNum, nums, featureLength, clusterCenter);
+<<<<<<< Updated upstream
 	if (nFeatures <= branchNum) return;
+=======
+	qsort(features, nFeatures, sizeof(featureClustering), cmp);		//??
+		for (int i = 0; i < nFeatures; i++) {
+		cout << "Label:   " << (*features++).label << endl;
+	}
+>>>>>>> Stashed changes
 
 	qsort(features, nFeatures, sizeof(featureClustering), cmp);		//??
 
