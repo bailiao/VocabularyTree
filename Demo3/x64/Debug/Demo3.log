@@ -1,10 +1,10 @@
-<<<<<<< Updated upstream
-﻿  VocabularyTree.cpp
+﻿  imageRetriver.cpp
+E:\Donald Duck\MyClass5\SRTP\Demo3\src\imageRetriver.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 E:\Donald Duck\MyClass5\SRTP\Demo3\src\VocabularyTree.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+E:\Donald Duck\MyClass5\SRTP\Demo3\src\imageRetriver.cpp(69,42): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+E:\Donald Duck\MyClass5\SRTP\Demo3\src\imageRetriver.cpp(181,33): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+E:\Donald Duck\MyClass5\SRTP\Demo3\src\imageRetriver.cpp(305,49): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  main.cpp
+E:\Donald Duck\MyClass5\SRTP\Demo3\src\VocabularyTree.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  正在生成代码...
   Demo3.vcxproj -> E:\Donald Duck\MyClass5\SRTP\Demo3\x64\Debug\Demo3.exe
-=======
-﻿  common.cpp
-D:\opencv\VocabularyTree\Demo3\src\VocabularyTree.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-D:\opencv\VocabularyTree\Demo3\src\common.cpp(36,27): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  Demo3.vcxproj -> D:\opencv\VocabularyTree\Demo3\x64\Debug\Demo3.exe
->>>>>>> Stashed changes

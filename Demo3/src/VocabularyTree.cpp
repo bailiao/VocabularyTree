@@ -31,20 +31,24 @@ void vocabularyTree::buildTree(double** features, int nFeatures, int nBranch, in
 	//}
 	//delete[]features;
 	buildRecursion(0, root, feature2Cluster, nFeatures, nBranch, featureLength);	//?where is root?
-	//delete []feature2Cluster;
+	
+	for (int i = 0; i < nFeatures; i++) {
+		delete[](feature2Cluster[i].feature);
+	}
+	delete []feature2Cluster;
 }
 
 void vocabularyTree::buildRecursion(int curDepth, vocabularyTreeNode* &curNode, featureClustering* features, int nFeatures, int branchNum, int featureLength) {
 	if (curDepth == depth) 		return;
 	if (nFeatures == 0)			return;
 	if (curNode == NULL) {
-		cout << "curNode == NULL" << endl;
+		//cout << "curNode == NULL" << endl;
 		curNode = new vocabularyTreeNode;
 	}
 	//curNode->children = new vocabularyTreeNode * [branchNum];
 	//for(int i=0;i<branchNum)
 	int* nums = new int[branchNum];
-	double** clusterCenter = NULL;													// 在kmean中赋值并分配空间
+	//double** clusterCenter = NULL;													// 在kmean中赋值并分配空间
 
 
 	double* sumvec = new double[featureLength];
@@ -60,18 +64,11 @@ void vocabularyTree::buildRecursion(int curDepth, vocabularyTreeNode* &curNode, 
 	for (int i = 0; i < featureLength; i++) {
 		curNode->feature[i] = sumvec[i] / nFeatures;
 	}
+	curNode->nFeatures = nFeatures;
 
-
-
-	kmeans(features, nFeatures, branchNum, nums, featureLength, clusterCenter);
-<<<<<<< Updated upstream
 	if (nFeatures <= branchNum) return;
-=======
-	qsort(features, nFeatures, sizeof(featureClustering), cmp);		//??
-		for (int i = 0; i < nFeatures; i++) {
-		cout << "Label:   " << (*features++).label << endl;
-	}
->>>>>>> Stashed changes
+	kmeans(features, nFeatures, branchNum, nums, featureLength);
+	
 
 	qsort(features, nFeatures, sizeof(featureClustering), cmp);		//??
 
@@ -115,7 +112,7 @@ void vocabularyTree::getTFIDF(vector<double>& tfidf, vocabularyTreeNode* curNode
 	if(curDepth == depth)	return;
 	if (curNode == NULL)	return;
 
-	tfidf.push_back(curNode->tf * curNode->idf);
+	tfidf.push_back(curNode->tf);
 	for(int i = 0; i < curNode->nBranch; i++) {
 		getTFIDF(tfidf, curNode->children[i], curDepth + 1);
 	}

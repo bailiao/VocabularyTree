@@ -68,12 +68,12 @@ void node_divide_cnt(double* &vector1, int cnt, int featureLength) {
 		
 }
 
-void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nums, int featureLength, double** &clusterCenter) {
+void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nums, int featureLength) {
 	//for (int i = 0; i < nFeatures; i++) {
 	//	cout << features[i].label << endl;
 	//}
 	//cout << "-------------------------" << endl;
-	if (nFeatures == 0) return;
+	//if (nFeatures == 0) return;
 											// features 	结构体数组	(label + 长度为featurelength的double*)
 											// nFeatures	目前有多少个feature, 如果少于branchNum个,每一个单独成类
 											// 目的是构建出 branchNum 个 cluster
@@ -81,26 +81,25 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 	for(int i = 0; i < branchNum; i++)
 		nums[i] = 0;						// 已经分配了内存
 
-	if(nFeatures <= branchNum) {
-		clusterCenter = new double*[nFeatures];
-		for(int i = 0; i < nFeatures; i++) {
-			clusterCenter[i] = features[i].feature;
-			nums[i] = 1;
-			features[i].label = i;
-		}
+	//if(nFeatures <= branchNum) {
+	//	clusterCenter = new double*[nFeatures];
+	//	for(int i = 0; i < nFeatures; i++) {
+	//		clusterCenter[i] = features[i].feature;
+	//		nums[i] = 1;
+	//		features[i].label = i;
+	//	}
 
-		for (int i = nFeatures; i < branchNum; i++) {
-			//clusterCenter[i] = NULL;
-			nums[i] = 0;
-			features[i].label = -1;
-		}
-		return;
-	}
+	//	for (int i = nFeatures; i < branchNum; i++) {
+	//		//clusterCenter[i] = NULL;
+	//		nums[i] = 0;
+	//		features[i].label = -1;
+	//	}
+	//	return;
+	//}
 
-	int* idx = new int[nFeatures];
+	//int* idx = new int[nFeatures];
 	int* cnt = new int[branchNum];
-
-	clusterCenter = new double*[branchNum];
+	double** clusterCenter = new double*[branchNum];
 	for (int i = 0; i < branchNum; i++) {
 		clusterCenter[i] = new double[featureLength];
 		for (int j = 0; j < featureLength; j++) {
@@ -119,8 +118,8 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 	tempCenters = new double*[branchNum];
 	for(int i = 0; i < branchNum; i++) {
 		tempCenters[i] = new double[featureLength];
-		for(int j = 0; j < featureLength; j++)
-			tempCenters[i][j] = 0;
+		//for(int j = 0; j < featureLength; j++)
+		//	tempCenters[i][j] = 0;
 	}
 	double sum;
 	for(int iter = 0; iter < MAX_ITER; iter++) {
@@ -146,13 +145,13 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 
 			// double mindis = 1e20;
 			// int minIndex = 0;
-			double mindis = 10000000;
+			double mindis = 100000000;
 			int minIndex = -1;
 
 			for(int j = 0; j < branchNum; j++) {
 				// double dis = sqr_distance(clusterCenter[i], features[i].feature, featureLength);
 				double dis = sqr_distance(clusterCenter[j], features[i].feature, featureLength);
-				if (_isnan(dis)) continue;
+				//if (_isnan(dis)) continue;
 				if(dis < mindis) {
 					mindis = dis;
 					minIndex = j;
@@ -160,7 +159,7 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 			}
 			cnt[minIndex]++;
 			features[i].label = minIndex;
-			node_add(tempCenters[idx[i] = minIndex], features[i].feature, featureLength);	
+			node_add(tempCenters[minIndex], features[i].feature, featureLength);	
 		}
 
 		for (int i = 0; i < branchNum; i++) {
@@ -192,7 +191,7 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 			}*/
 			sum += sqr_distance(tempCenters[i], clusterCenter[i], featureLength);
 			//cout << sum << endl;
-			if (_isnan(sum))  continue;
+			//if (_isnan(sum))  continue;
 		}
 			
 
@@ -218,10 +217,11 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 
 	for (int i = 0; i < branchNum; i++) {
 		delete []tempCenters[i];
+		delete []clusterCenter[i];
 	}
 	delete []tempCenters;
-
-	delete[] idx;
+	delete []clusterCenter;
+	//delete[] idx;
 	delete[] cnt;
 	cout << "kmeans end" << endl;
 	cout << "sum = " << sum << endl;
@@ -231,13 +231,9 @@ void kmeans(featureClustering* &features, int nFeatures, int branchNum, int* &nu
 }
 
 int cmp(const void* a, const void* b) {
-<<<<<<< Updated upstream
 	int label_a = ((featureClustering*)a)->label;
 	int label_b = ((featureClustering*)b)->label;
 	return label_a > label_b ? 1 : -1;
-=======
-	return ((featureClustering*)a)->label - ((featureClustering*)b)->label;
->>>>>>> Stashed changes
 }
 
 #define LEN 1024
