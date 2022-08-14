@@ -1,0 +1,32 @@
+#! /bin/bash
+
+MAIN_PATH=$(pwd)
+
+cd imgs
+if [ ! -d class_1 ]; then
+    echo 'The folder [imgs] has been unclassified.'
+else
+    cd $MAIN_PATH
+    mkdir tmp_folder
+    ORIGIN=$MAIN_PATH'/tmp_folder'
+
+    # echo $ORIGIN
+
+    cd imgs
+    for folder in $(ls)
+    do
+        cd $folder
+        IFS_BACKUP=$IFS
+        IFS=$(echo -en "\n\b")
+        for img in $(ls)
+        do
+            mv $img $ORIGIN
+        done
+        IFS=$IFS_BACKUP
+        cd ..
+    done
+
+    cd $MAIN_PATH
+    rm -r imgs
+    mv tmp_folder imgs
+fi

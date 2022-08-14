@@ -1,0 +1,63 @@
+#! /bin/bash
+
+#   get the project path
+MAIN_PATH=$(pwd)
+
+
+cd imgs
+if [ -d class_1 ]; then
+    echo 'The folder [imgs] has been classified.'
+else
+    #   classify the folder with test.py
+    
+
+
+    #   path for target folder
+    TARGET_FOLDER_PREFIX=$MAIN_PATH'/tmp_folder/class_'
+    TARGET=''
+
+    #   path for the file_i
+    FILE_PREFIX=$MAIN_PATH'/out_text/file_'
+    FILE_PATH=''
+
+
+    #   the real class count
+    CLASS_COUNT=0
+    for file_i in $(ls $MAIN_PATH'/out_text/')
+    do
+        ((CLASS_COUNT++))
+    done
+
+    #   into tmp_folder
+    cd $MAIN_PATH
+    mkdir tmp_folder
+    cd tmp_folder
+
+    for((i=1;i<=$CLASS_COUNT;i++)){
+        #   tmp_sub_folder
+        mkdir 'class_'$i
+        TARGET=$TARGET_FOLDER_PREFIX$i
+        FILE_PATH=$FILE_PREFIX$i
+        IFS_BACKUP=$IFS
+        IFS=$(echo -en "\n\b")
+        for line in $(cat $FILE_PATH)
+        do
+            #   full img path
+            mv $line $TARGET
+        done
+        IFS=$IFS_BACKUP
+    }
+
+    cd $MAIN_PATH
+    rm -r imgs
+    mv tmp_folder imgs
+    rm -r imgs-compressed
+
+fi
+
+
+
+
+
+
+
