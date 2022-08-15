@@ -6,7 +6,7 @@
 
 ​	运行时需要修改图片源集的路径
 
-<img src="C:\Users\hck\AppData\Roaming\Typora\typora-user-images\image-20220814160018409.png" alt="image-20220814160018409" style="zoom: 33%;" />
+<img src="img/path.png" alt="image-20220814160018409" style="zoom: 33%;" />
 
 
 
